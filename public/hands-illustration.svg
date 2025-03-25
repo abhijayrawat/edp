@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="600" viewBox="0 0 500 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="handGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:white;stop-opacity:0.95"/>
+      <stop offset="100%" style="stop-color:white;stop-opacity:0.85"/>
+    </linearGradient>
+    <filter id="handShadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="0" dy="4" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Top hand reaching down -->
+  <g filter="url(#handShadow)" opacity="0.9">
+    <path d="M300 100 
+             C340 120, 360 160, 350 200
+             C340 240, 310 260, 280 270
+             C250 280, 220 270, 200 250
+             C180 230, 170 210, 180 190
+             C190 170, 210 160, 230 170
+             C250 180, 260 200, 250 220"
+          stroke="white" 
+          stroke-width="40" 
+          stroke-linecap="round"
+          fill="none"/>
+    
+    <!-- Fingers for top hand -->
+    <path d="M270 180
+             C290 190, 300 210, 290 230"
+          stroke="white" 
+          stroke-width="25" 
+          stroke-linecap="round"
+          fill="none"/>
+  </g>
+
+  <!-- Bottom hand reaching up -->
+  <g filter="url(#handShadow)" opacity="0.9">
+    <path d="M200 500
+             C160 480, 140 440, 150 400
+             C160 360, 190 340, 220 330
+             C250 320, 280 330, 300 350
+             C320 370, 330 390, 320 410
+             C310 430, 290 440, 270 430
+             C250 420, 240 400, 250 380"
+          stroke="white" 
+          stroke-width="40" 
+          stroke-linecap="round"
+          fill="none"/>
+    
+    <!-- Fingers for bottom hand -->
+    <path d="M230 420
+             C210 410, 200 390, 210 370"
+          stroke="white" 
+          stroke-width="25" 
+          stroke-linecap="round"
+          fill="none"/>
+  </g>
+</svg> 
