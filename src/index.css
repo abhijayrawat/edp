@@ -3,7 +3,7 @@
 /* Base layer: global resets and typography */
 @layer base {
   html, body {
-    @apply bg-[#f3f4f6] text-[#181a14] font-sans;
+    @apply bg-[#EFEFEF] text-[#181a14] font-sans;
   }
   h1, h2, h3, h4 {
     @apply font-semibold;
