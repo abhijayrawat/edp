@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/* Base layer: global resets and typography */
+@layer base {
+  html, body {
+    @apply bg-[#f3f4f6] text-[#181a14] font-sans;
+  }
+  h1, h2, h3, h4 {
+    @apply font-semibold;
+  }
+}
+
+/* Components layer: reusable cards, buttons, pills */
+@layer components {
+  .card {
+    @apply bg-white rounded-xl shadow-sm p-5;
+  }
+  .card-dark {
+    @apply bg-[#181a14] text-white rounded-xl shadow-sm p-5;
+  }
+  .card-green {
+    @apply bg-[#afd42a] text-[#181a14] rounded-xl shadow-sm p-5;
+  }
+  .card-title {
+    @apply font-semibold text-base pb-4 flex items-center justify-between;
+  }
+  .action-btn {
+    @apply bg-[#d7f063] rounded-full p-1.5 shadow-sm hover:bg-[#afd42a] transition-colors;
+  }
+  .metric-value {
+    @apply text-4xl md:text-5xl font-bold text-[#afd42a];
+  }
+  .metric-change {
+    @apply text-xs text-gray-500;
+  }
+  .patient-pill {
+    @apply flex items-center bg-white rounded-full px-4 py-2 shadow-sm gap-3;
+  }
+  .btn {
+    @apply flex items-center justify-center gap-2 rounded-lg py-2 px-4 font-medium transition-colors;
+  }
+  .btn-primary {
+    @apply bg-[#afd42a] text-white hover:bg-[#9cbe25];
+  }
+  .btn-outline {
+    @apply border border-[#afd42a] text-[#afd42a] hover:bg-[#afd42a] hover:text-white;
+  }
+  .alert-badge {
+    @apply flex items-center gap-2 rounded-full px-3 py-1 bg-white shadow-sm text-sm;
+  }
+  .health-event {
+    @apply flex items-center justify-between bg-white/20 rounded-lg p-2.5 mb-2;
+  }
+}
