@@ -43,8 +43,8 @@ const NotificationCard = () => {
   if (!alert) {
     // If there's no alert, show 'No Alert' message
     return (
-      <div className="bg-white rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl border-4 border-transparent">
-        <div className="flex justify-between items-center">
+      <div className="bg-white rounded-2xl p-6 h-80 shadow-xl flex flex-col justify-between transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl border-4 border-transparent">
+        <div className="flex justify-between my-16 items-center">
           <div className="max-w-[60%]">
             <h3 className="text-gray-500 font-semibold text-2xl mb-4">No Alert</h3>
             <p className="text-gray-700 font-medium text-lg mb-4">There are currently no active alerts.</p>
@@ -74,34 +74,16 @@ const NotificationCard = () => {
 
       {/* Notification Card */}
       <div
-        className={`bg-white rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl ${
+        className={`bg-white rounded-2xl h-80 p-6 shadow-xl flex flex-col justify-between transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl ${
           alertActive ? 'border-4 border-red-500' : 'border-4 border-transparent'
         }`}
       >
         <div className="flex justify-between items-center">
-          <div className="max-w-[60%]">
-            <h3 className="text-red-500 font-bold text-2xl mb-4">
-              {alertActive ? '⚠️ High Alert Notification' : 'No Alert'}
-            </h3>
             <p className="text-gray-700 font-medium text-lg mb-4">
               {alertActive
                 ? 'A high alert has been triggered. Please check immediately.'
                 : 'There are currently no active alerts.'}
             </p>
-          </div>
-          <div className="w-32 h-32">
-            {alertActive ? (
-              <img
-                src="/alert.png" // Replace with your actual alert icon
-                alt="Alert Icon"
-                className="w-full h-full object-contain"
-              />
-            ) : (
-              <div className="w-full h-full bg-gray-300 rounded-full flex items-center justify-center text-gray-600">
-                <span>No Alert</span>
-              </div>
-            )}
-          </div>
         </div>
 
         <div className="mt-4 w-full">

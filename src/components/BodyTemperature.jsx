@@ -36,9 +36,9 @@ const BodyTemperature = () => {
   }, []);
 
   return (
-    <div className="bg-white rounded-2xl p-5 shadow-lg hover:scale-105 hover:shadow-xl transition-transform transition-shadow duration-200 cursor-pointer h-full relative">
+    <div className="bg-white rounded-2xl p-5 shadow-lg hover:scale-105 hover:shadow-xl transition-transform transition-shadow duration-200 cursor-pointer h-80   relative">
       <div className="flex justify-between items-center mb-4">
-        <h3 className="text-[#6D8900] font-semibold text-xl">Body Temp.</h3>
+        <h3 className="text-[#6D8900] font-semibold text-xl">Body Temp</h3>
         <button className="w-8 h-8 flex items-center justify-center rounded-full bg-[#9FC700] hover:bg-[#e6f7c7] transition-all duration-200 cursor-pointer hover:scale-110">
           <svg
             className="w-4 h-4 text-white hover:text-[#9FC700]"

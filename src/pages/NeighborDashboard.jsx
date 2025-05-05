@@ -33,8 +33,8 @@ const FamilyDashboard = () => {
   </div>
 
   {/* Vitals: Body Temp, Oxygen, Heart Rate, Live Location */}
-  <div className="flex flex-wrap gap-10 px-7">
-    <div className="w-[22%]">
+  <div className="flex flex-wrap gap-10 px-7 ">
+    <div className="w-[22%] ">
       <BodyTemperature />
     </div>
     <div className="w-[22%]">
