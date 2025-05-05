@@ -1,16 +1,47 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  // Hardcoded user credentials
+  const users = [
+    { email: "family@example.com", password: "family123", type: "family", dashboard: "/family" },
+    { email: "provider@example.com", password: "provider123", type: "provider", dashboard: "/healthcare" },
+    { email: "neighbor@example.com", password: "neighbor123", type: "neighbor", dashboard: "/neighbor" }
+  ];
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
   };
 
+  const handleLogin = () => {
+    // Reset error message
+    setError("");
+    
+    // Find user with matching credentials
+    const user = users.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (user) {
+      // Store user type in localStorage for future reference
+      localStorage.setItem("userType", user.type);
+      localStorage.setItem("userEmail", user.email);
+      
+      // Redirect to the appropriate dashboard
+      navigate(user.dashboard);
+    } else {
+      setError("Invalid email or password. Please try again.");
+    }
+  };
+ 
   const handleSignUpClick = () => {
-    navigate("/signup"); // Redirect to the Signup page
+    navigate("/signup");
   };
 
   return (
@@ -54,10 +85,18 @@ const Login = () => {
             Welcome back! Please fill your email & password to log into your account.
           </p>
 
+          {error && (
+            <div className="mb-4 p-2 bg-red-100 text-red-700 rounded-lg text-sm">
+              {error}
+            </div>
+          )}
+
           <div className="mb-4">
             <input
               type="email"
               placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#84A500] hover:shadow-md transition-shadow duration-200"
             />
           </div>
@@ -66,6 +105,8 @@ const Login = () => {
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm pr-10 focus:outline-none focus:ring-2 focus:ring-[#84A500] hover:shadow-md transition-shadow duration-200"
             />
             <button
@@ -75,17 +116,12 @@ const Login = () => {
             >
               <img
                 src={showPassword ? "/eye-off.svg" : "/eye.svg"}
-                alt={showPassword ? "Hide password" : "Show password"}
                 className="w-5 h-5 opacity-60 hover:opacity-100 transition-opacity duration-200"
               />
             </button>
           </div>
 
-          <div className="flex items-center justify-between mb-7">
-            <label className="flex items-center text-sm text-gray-600 hover:text-gray-800 transition-colors duration-200">
-              <input type="checkbox" className="mr-2" />
-              Remember me
-            </label>
+          <div className="flex items-center justify-end mb-7">
             <a
               href="/forgot-password"
               className="text-[#84A500] text-sm hover:underline transition-all duration-200"
@@ -95,13 +131,16 @@ const Login = () => {
           </div>
 
           {/* Log In Button */}
-          <button className="w-full bg-[#84A500] text-white py-2 rounded-lg text-sm font-bold hover:bg-[#9fc700] hover:scale-105 transition-all duration-200">
+          <button 
+            onClick={handleLogin} 
+            className="w-full bg-[#84A500] text-white py-2 rounded-lg text-sm font-bold hover:bg-[#9fc700] hover:scale-105 transition-all duration-200"
+          >
             Log in
           </button>
 
           {/* Sign Up Button */}
           <button
-            onClick={handleSignUpClick} // Add onClick handler
+            onClick={handleSignUpClick}
             className="w-full bg-white text-[#84A500] py-2 rounded-lg text-sm font-bold border border-[#84A500] mt-2 hover:bg-[#f1f9e3] hover:scale-105 transition-all duration-200"
           >
             Sign up
@@ -121,6 +160,16 @@ const Login = () => {
             <button className="p-2 rounded-full border border-gray-200 hover:bg-gray-100 transition-all duration-200">
               <img src="/facebook.svg" alt="Facebook" className="w-6 h-6" />
             </button>
+          </div>
+
+          {/* Demo Credentials Box */}
+          <div className="mt-6 p-3 bg-gray-50 rounded-lg border border-gray-200">
+            <p className="text-sm font-bold text-gray-700 mb-2">Demo Credentials:</p>
+            <div className="text-xs space-y-1">
+              <p><span className="font-medium">Family Member:</span> family@example.com / family123</p>
+              <p><span className="font-medium">Healthcare Provider:</span> provider@example.com / provider123</p>
+              <p><span className="font-medium">Neighbor:</span> neighbor@example.com / neighbor123</p>
+            </div>
           </div>
         </div>
       </div>
