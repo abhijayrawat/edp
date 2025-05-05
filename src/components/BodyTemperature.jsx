@@ -15,7 +15,7 @@ const BodyTemperature = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data)
+        // console.log(data)
         setTemperature(data.temperature);
         setError(null); // Reset error on success
       } catch (err) {

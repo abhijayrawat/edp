@@ -11,7 +11,7 @@ const HeartRate = () => {
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         setHeartRate(data.heart_rate);
-        console.log(data); // Debugging line to check the response
+        // console.log(data); // Debugging line to check the response
         setError(null);
       } catch (err) {
         setError(err.message);

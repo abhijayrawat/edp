@@ -86,7 +86,7 @@ const PatientDetails = () => {
         </div>
       </div>
 
-      {/* Slide-up Form Overlay */}
+      {/* Zoom Animation and Form */}
       <div
         className={`fixed inset-0 z-40 bg-gray-200/30 backdrop-blur-sm flex items-center justify-center transition-opacity duration-10 ease-in ${
           showForm ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -136,24 +136,24 @@ const PatientDetails = () => {
               </div>
             ))}
 
-            <div className="col-span-2 flex justify-between mt-4">
-              <button
-                type="button"
-                onClick={() => setShowForm(false)}
-                className="px-4 py-1.5 rounded-md border border-gray-400 text-gray-700 hover:bg-gray-100"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="bg-[#283618] hover:bg-[#3a4f2d] text-white px-4 py-1.5 rounded-md"
-              >
-                Save
-              </button>
-            </div>
-          </form>
+              <div className="col-span-2 flex justify-between mt-4">
+                <button
+                  type="button"
+                  onClick={() => setShowForm(false)}
+                  className="px-4 py-1.5 rounded-md border border-gray-400 text-gray-700 hover:bg-gray-100"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="bg-[#283618] hover:bg-[#3a4f2d] text-white px-4 py-1.5 rounded-md"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
     </>
   );
 };

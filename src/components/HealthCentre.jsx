@@ -28,8 +28,8 @@ const HealthCentre = () => {
         {/* Apollo Hospital Info Box */}
         <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-black bg-opacity-40 rounded-lg p-3">
           <div>
-            <h4 className="text-white font-semibold text-lg">Apollo Hospitals</h4>
-            <p className="text-gray-300 text-sm">Salt Lake, Kolkata</p>
+            <h4 className="text-white font-semibold text-lg">Jabalpur Hospital</h4>
+            <p className="text-gray-300 text-sm">Russel Chowk, Jabalpur</p>
           </div>
           <div className="flex space-x-2">
             {/* Call Button */}
@@ -40,14 +40,19 @@ const HealthCentre = () => {
                 className="w-5 h-5"
               />
             </button>
-            {/* Message Button */}
-            <button className="w-10 h-10 flex items-center justify-center rounded-full bg-white text-[#9FC700] hover:bg-[#e6f7c7] transition-all duration-200 shadow-md">
+            {/* Map Button (Replaces message button) */}
+            <a
+              href="https://maps.app.goo.gl/jtyuFNBHj3zj2wEC6" // Directs to the location on Google Maps
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white text-[#9FC700] hover:bg-[#e6f7c7] transition-all duration-200 shadow-md"
+            >
               <img
-                src="message.svg" // Replace with the actual message icon image path
-                alt="Message Icon"
+                src="Vector.png" // Replace with the actual map icon image path
+                alt="Map Icon"
                 className="w-5 h-5"
               />
-            </button>
+            </a>
           </div>
         </div>
       </div>
