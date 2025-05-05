@@ -52,3 +52,16 @@
     @apply flex items-center justify-between bg-white/20 rounded-lg p-2.5 mb-2;
   }
 }
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #A7D100;
+  border-radius: 9999px;
+}

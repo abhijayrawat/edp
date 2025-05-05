@@ -27,7 +27,7 @@ const PatientDetails = () => {
   return (
     <>
       {/* Main Patient Card */}
-      <div className="card-green h-full relative p-4 rounded-xl text-white bg-[#a8cf45] overflow-hidden">
+      <div className="card-green h-full relative p-4 rounded-xl text-white bg-[#a8cf45] overflow-hidden hover:scale-105 hover:shadow-xl transition-transform transition-shadow duration-200 cursor-pointer">
         <div className="mb-2 font-semibold text-black">ID-{patient.id}</div>
 
         <div className="grid grid-cols-2 gap-x-8 gap-y-1 text-black">
@@ -68,7 +68,7 @@ const PatientDetails = () => {
         {/* Update Button */}
         <button
           onClick={() => setShowForm(true)}
-          className="mt-4 bg-[#283618] hover:bg-[#3a4f2d] transition-all duration-200 text-white rounded-md px-4 py-1.5 flex items-center gap-1.5"
+          className="mt-4 bg-[#283618] hover:bg-[#3a4f2d] hover:scale-105 hover:shadow-md transition-all duration-200 text-white rounded-md px-4 py-1.5 flex items-center gap-1.5 relative z-20"
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
             <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
@@ -78,13 +78,13 @@ const PatientDetails = () => {
 
         {/* Decorative image */}
         <img
-          // src="/patient-update.svg"
+          src="/Patient.svg"
           alt=""
-          className="absolute right-0 bottom-0 w-32 h-32 opacity-50 object-cover"
+          className="absolute right-0 bottom-0 w-52 h-52 opacity-50 object-cover z-20"
         />
 
         {/* Bottom image */}
-        <div className="mt-4">
+        {/* <div className="mt-4">
           <img
             src="/your-default-image.jpg"
             alt="Patient"
@@ -95,7 +95,7 @@ const PatientDetails = () => {
               opacity: 0.5,
             }}
           />
-        </div>
+        </div> */}
       </div>
 
       {/* Slide-up Form Overlay */}
