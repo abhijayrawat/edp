@@ -45,6 +45,7 @@ const ECGGraph = () => {
         const normalizedEcg = rawEcg.map((v) => parseFloat(((v - avg) / 500).toFixed(2)));
 
         setEcgData(normalizedEcg);
+        console.log("ECG Data:", normalizedEcg);
       } catch (err) {
         setError(err.message);
         const fallback = Array.from({ length: 30 }, (_, i) =>

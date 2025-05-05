@@ -2,11 +2,7 @@ import React from 'react';
 
 const trends = [
   { title: 'Cardiac Arrest', date: 'Feb, 14' },
-  { title: 'Fall Detection', date: 'Feb, 14' },
   { title: 'Low spO2', date: 'Feb, 14' },
-  { title: 'Low spO2', date: 'Feb, 14' },
-  { title: 'High BP', date: 'Feb, 13' },
-  { title: 'Low Heart Rate', date: 'Feb, 12' },
 ];
 
 const PastHealthTrends = () => {

@@ -16,7 +16,7 @@ const OxygenLevel = () => {
         const data = await response.json();
         // Assuming API returns: { oxygen: 95 }
         setOxygenLevel(data.spo2);
-        console.log(data); // Debugging line to check the response
+        // console.log(data); // Debugging line to check the response
         setError(null);
       } catch (err) {
         setError(err.message);
@@ -28,6 +28,7 @@ const OxygenLevel = () => {
 
     return () => clearInterval(intervalId); // Cleanup
   }, []);
+  
 
   return (
     <div className="bg-white rounded-2xl p-5 shadow-lg hover:scale-105 hover:shadow-xl transition-transform transition-shadow duration-200 cursor-pointer h-full relative">

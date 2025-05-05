@@ -10,7 +10,7 @@ import PastHealthTrends from "../components/PastHealthTrends";
 import TokenEarned from "../components/TokenEarned";
 import HealthCentre from "../components/HealthCentre";
 import ProofOfAssistance from "../components/ProofOfAssistance";
-// import GenerateAlert from "../components/GenerateAlert";
+import GenerateAlert from "../components/GenerateAlert";
 
 const FamilyDashboard = () => {
   return (
@@ -61,7 +61,7 @@ const FamilyDashboard = () => {
     </div>
     <div className="flex-1 min-w-[30%]">
       {/* Replace this div content with actual Proof of Assistance */}
-      <div className="bg-white h-full rounded-xl shadow"><ProofOfAssistance/></div>
+      <div className="bg-white h-full rounded-xl shadow"><GenerateAlert/></div>
     </div>
   </div>
 </div>
