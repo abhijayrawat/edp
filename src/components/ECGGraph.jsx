@@ -135,7 +135,7 @@ const ECGGraph = () => {
   };
 
   return (
-    <div className="bg-[#0f0f0f] rounded-2xl p-5 shadow-lg  text-white">
+    <div className="bg-black rounded-2xl p-5 shadow-lg hover:scale-105 hover:shadow-xl transition-transform transition-shadow duration-200 cursor-pointer">
       <div className="flex justify-between items-center mb-3">
         <h3 className="text-sm font-medium text-gray-300">ECG Graph</h3>
         <div className="flex bg-[#1f1f1f] rounded-full p-1 space-x-1">
@@ -147,7 +147,7 @@ const ECGGraph = () => {
         </div>
       </div>
 
-      <div className="h-60">
+      <div className="h-70">
         <Line data={chartData} options={chartOptions} />
       </div>
     </div>
