@@ -1,6 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const OxygenLevel = () => {
+  const [oxygenLevel, setOxygenLevel] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let intervalId;
+
+    const fetchOxygenLevel = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/vitals/spo2'); // Replace with your API endpoint
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        // Assuming API returns: { oxygen: 95 }
+        setOxygenLevel(data.spo2);
+        console.log(data); // Debugging line to check the response
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchOxygenLevel(); // Initial fetch
+    intervalId = setInterval(fetchOxygenLevel, 2500); // Fetch every second
+
+    return () => clearInterval(intervalId); // Cleanup
+  }, []);
+
   return (
     <div className="bg-white rounded-2xl p-5 shadow-lg hover:scale-105 hover:shadow-xl transition-transform transition-shadow duration-200 cursor-pointer h-full relative">
       <div className="flex justify-between items-center mb-4">
@@ -19,7 +47,6 @@ const OxygenLevel = () => {
           className="w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Dashed Line */}
           <path
             d="M0 40 C 50 10, 150 70, 200 40"
             stroke="#9FC700"
@@ -27,25 +54,33 @@ const OxygenLevel = () => {
             fill="none"
             strokeDasharray="4 4"
           />
-          {/* Solid Line */}
           <path
             d="M0 40 C 50 20, 150 60, 200 40"
             stroke="#9FC700"
             strokeWidth="2"
             fill="none"
           />
-          {/* Highlighted Point */}
           <circle cx="100" cy="40" r="5" fill="#9FC700" />
         </svg>
       </div>
 
-      {/* Info shifted to the bottom left */}
+      {/* Data display */}
       <div className="absolute bottom-4 left-4 text-left">
-        <div className="text-[#9FC700] text-5xl font-normal mb-2">95%</div>
-        <div className="flex items-center text-[#474747] text-sm">
-          <span className="mr-1">±</span>
-          <span>0.2% from last week</span>
-        </div>
+        {oxygenLevel !== null ? (
+          <div className="text-[#9FC700] text-5xl font-normal mb-2">
+            {oxygenLevel}%
+          </div>
+        ) : (
+          <div className="text-gray-400 text-lg">Loading...</div>
+        )}
+        {error ? (
+          <div className="text-red-500 text-sm mt-1">Error: {error}</div>
+        ) : (
+          <div className="flex items-center text-[#474747] text-sm">
+            {/* <span className="mr-1">±</span>
+            <span>0.2% from last week</span> */}
+          </div>
+        )}
       </div>
     </div>
   );

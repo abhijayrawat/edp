@@ -1,6 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const HeartRate = () => {
+  const [heartRate, setHeartRate] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchHeartRate = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/vitals/heart-rate'); // Replace with your API endpoint
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.json();
+        setHeartRate(data.heart_rate);
+        console.log(data); // Debugging line to check the response
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchHeartRate(); // Initial fetch
+
+    const intervalId = setInterval(fetchHeartRate, 1000); // Poll every second
+
+    return () => clearInterval(intervalId); // Cleanup on unmount
+  }, []);
+
   return (
     <div className="bg-gradient-to-br from-black to-[#777777] rounded-2xl p-5 shadow-lg hover:scale-105 hover:shadow-xl transition-transform transition-shadow duration-200 cursor-pointer h-full relative">
       <div className="flex justify-between items-center mb-4">
@@ -17,22 +41,26 @@ const HeartRate = () => {
         </button>
       </div>
 
-      {/* Image Placeholder */}
       <div className="h-32 flex items-center justify-center">
         <img
-          src="heartrate.svg" // Replace with the actual path to the image
+          src="heartrate.svg"
           alt="Heart Rate Visualization"
           className="h-full object-contain"
         />
       </div>
 
-      {/* Info shifted to the bottom left */}
       <div className="absolute bottom-4 left-4 text-left">
-        <div className="text-[#B6E401] text-5xl font-normal mb-2">92 bpm</div>
-        <div className="flex items-center text-[#ECFFA0] text-sm">
+        {error ? (
+          <div className="text-red-500">Error: {error}</div>
+        ) : (
+          <div className="text-[#B6E401] text-5xl font-normal mb-2">
+            {heartRate !== null ? `${heartRate} bpm` : 'Loading...'}
+          </div>
+        )}
+        {/* <div className="flex items-center text-[#ECFFA0] text-sm">
           <span className="mr-1">+</span>
           <span>0.2% from last week</span>
-        </div>
+        </div> */}
       </div>
     </div>
   );
