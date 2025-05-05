@@ -38,13 +38,18 @@ const ECGGraph = () => {
         const responseData = await res.json();
         const rawEcg = responseData.ecg || [];
 
-        // Calculate the average of the ECG data
+        // Subtract the average
         const avg = rawEcg.reduce((acc, val) => acc + val, 0) / rawEcg.length;
+        const normalizedRaw = rawEcg.map((v) => v - avg);
 
-        // Normalize ECG values by subtracting the average
-        const normalizedEcg = rawEcg.map((v) => parseFloat(((v - avg) / 500).toFixed(2)));
+        // Min-max normalize to [-1, 1]
+        const min = Math.min(...normalizedRaw);
+        const max = Math.max(...normalizedRaw);
+        const finalEcg = normalizedRaw.map((v) =>
+          parseFloat(((2 * (v - min) / (max - min)) - 1).toFixed(2))
+        );
 
-        setEcgData(normalizedEcg);
+        setEcgData(finalEcg);
       } catch (err) {
         setError(err.message);
         const fallback = Array.from({ length: 30 }, (_, i) =>
@@ -70,9 +75,7 @@ const ECGGraph = () => {
   const labels = ecgData.map((_, i) => `${ecgData.length - i}s`);
 
   const average = ecgData.length
-    ? (
-        ecgData.reduce((a, b) => a + b, 0)
-      ).toFixed(2)
+    ? (ecgData.reduce((a, b) => a + b, 0) / ecgData.length).toFixed(2)
     : 0;
 
   const chartData = {
@@ -102,7 +105,7 @@ const ECGGraph = () => {
       y: {
         min: -2,
         max: 2,
-        display: false, // Remove Y-axis entirely
+        display: false,
       },
     },
     plugins: {
@@ -132,10 +135,7 @@ const ECGGraph = () => {
     <div className="bg-black rounded-2xl p-5 shadow-lg">
       <div className="text-gray-300 mb-3 font-medium">ECG Graph</div>
 
-      <div
-        className="overflow-x-auto custom-scroll"
-        ref={scrollRef}
-      >
+      <div className="overflow-x-auto custom-scroll" ref={scrollRef}>
         <div style={{ width: "1800px", height: "200px" }}>
           <Line data={chartData} options={chartOptions} />
         </div>

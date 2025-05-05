@@ -27,86 +27,82 @@ const PatientDetails = () => {
   return (
     <>
       {/* Main Patient Card */}
-      <div className="card-green h-full relative p-4 rounded-xl text-white bg-[#a8cf45] overflow-hidden hover:scale-105 hover:shadow-xl transition-transform transition-shadow duration-200 cursor-pointer">
-        <div className="mb-2 font-semibold text-black">ID-{patient.id}</div>
-
-        <div className="grid grid-cols-2 gap-x-8 gap-y-1 text-black">
-          <div>
-            <span className="text-sm">Age</span>
-            <p className="font-bold">{patient.age}</p>
-          </div>
-          <div>
-            <span className="text-sm">Blood Gr.</span>
-            <p className="font-bold">{patient.bloodGroup}</p>
-          </div>
-          <div>
-            <span className="text-sm">Gender</span>
-            <p className="font-bold">{patient.gender}</p>
-          </div>
-          <div>
-            <span className="text-sm">Height</span>
-            <p className="font-bold">{patient.height}</p>
-          </div>
-          <div>
-            <span className="text-sm">Allergies</span>
-            <p className="font-bold">{patient.allergies}</p>
-          </div>
-          <div>
-            <span className="text-sm">Weight</span>
-            <p className="font-bold">{patient.weight}</p>
-          </div>
-          <div>
-            <span className="text-sm">Diseases</span>
-            <p className="font-bold">{patient.diseases}</p>
-          </div>
-          <div>
-            <span className="text-sm">Lives in</span>
-            <p className="font-bold">{patient.location}</p>
-          </div>
-        </div>
-
-        {/* Update Button */}
-        <button
-          onClick={() => setShowForm(true)}
-          className="mt-4 bg-[#283618] hover:bg-[#3a4f2d] hover:scale-105 hover:shadow-md transition-all duration-200 text-white rounded-md px-4 py-1.5 flex items-center gap-1.5 relative z-20"
-        >
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
-          </svg>
-          Update
-        </button>
-
-        {/* Decorative image */}
+      <div className="card-green h-full relative p-4 rounded-xl bg-[#a8cf45] overflow-hidden hover:scale-105 hover:shadow-xl transition-transform transition-shadow duration-200 cursor-pointer">
+        {/* Background Image - under text */}
         <img
           src="/Patient.svg"
           alt=""
-          className="absolute right-0 bottom-0 w-52 h-52 opacity-50 object-cover z-20"
+          className="absolute right-0 bottom-0 w-52 h-52 opacity-20 object-contain z-0"
         />
 
-        {/* Bottom image */}
-        {/* <div className="mt-4">
-          <img
-            src="/your-default-image.jpg"
-            alt="Patient"
-            className="object-cover rounded"
-            style={{
-              width: "40vw",
-              height: "60px",
-              opacity: 0.5,
-            }}
-          />
-        </div> */}
+        <div className="relative z-10">
+          <div className="mb-2 font-semibold text-[#000]">ID-{patient.id}</div>
+
+          <div className="grid grid-cols-2 gap-x-8 gap-y-1 text-[#000]">
+            <div>
+              <span className="text-sm">Age</span>
+              <p className="font-bold text-[#000]">{patient.age}</p>
+            </div>
+            <div>
+              <span className="text-sm">Blood Gr.</span>
+              <p className="font-bold text-[#000]">{patient.bloodGroup}</p>
+            </div>
+            <div>
+              <span className="text-sm">Gender</span>
+              <p className="font-bold text-[#000]">{patient.gender}</p>
+            </div>
+            <div>
+              <span className="text-sm">Height</span>
+              <p className="font-bold text-[#000]">{patient.height}</p>
+            </div>
+            <div>
+              <span className="text-sm">Allergies</span>
+              <p className="font-bold text-[#000]">{patient.allergies}</p>
+            </div>
+            <div>
+              <span className="text-sm">Weight</span>
+              <p className="font-bold text-[#000]">{patient.weight}</p>
+            </div>
+            <div>
+              <span className="text-sm">Diseases</span>
+              <p className="font-bold text-[#000]">{patient.diseases}</p>
+            </div>
+            <div>
+              <span className="text-sm">Lives in</span>
+              <p className="font-bold text-[#000]">{patient.location}</p>
+            </div>
+          </div>
+
+          {/* Update Button */}
+          <button
+            onClick={() => setShowForm(true)}
+            className="mt-4 bg-[#283618] hover:bg-[#3a4f2d] hover:scale-105 hover:shadow-md transition-all duration-200 text-white rounded-md px-4 py-1.5 flex items-center gap-1.5 relative z-20"
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+            </svg>
+            Update
+          </button>
+        </div>
       </div>
 
       {/* Slide-up Form Overlay */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-50 transition-all duration-500 ${
-          showForm ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
-        } flex justify-center items-end`}
+        className={`fixed inset-0 z-40 bg-gray-200/30 backdrop-blur-sm flex items-center justify-center transition-opacity duration-10 ease-in ${
+          showForm ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
       >
-        <div className="bg-[#f0f9ec] w-full max-w-xl rounded-t-2xl p-6 text-black shadow-xl transform transition-transform duration-500">
+        <div
+          className={`bg-[#f0f9ec] w-full max-w-xl rounded-2xl p-6 text-black shadow-xl transform transition-all duration-10 ease-in ${
+            showForm
+              ? "opacity-100 scale-100 translate-y-0"
+              : "opacity-0 scale-95 translate-y-4"
+          }`}
+        >
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-bold text-[#283618]">Edit Patient Details</h2>
+            <h2 className="text-lg font-bold text-[#283618]">
+              Edit Patient Details
+            </h2>
             <button
               onClick={() => setShowForm(false)}
               className="text-gray-500 hover:text-red-500 font-bold text-lg"
@@ -127,7 +123,9 @@ const PatientDetails = () => {
               { label: "Lives in", name: "location" },
             ].map((field) => (
               <div key={field.name}>
-                <label className="text-sm text-[#555] block mb-1">{field.label}</label>
+                <label className="text-sm text-[#555] block mb-1">
+                  {field.label}
+                </label>
                 <input
                   type="text"
                   name={field.name}
