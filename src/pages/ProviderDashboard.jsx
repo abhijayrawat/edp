@@ -10,6 +10,7 @@ import PastHealthTrends from "../components/PastHealthTrends";
 import TokenEarned from "../components/TokenEarned";
 import HealthCentre from "../components/HealthCentre";
 import ProofOfAssistance from "../components/ProofOfAssistance";
+import NotificationCard from "../components/NotificationCard";
 // import GenerateAlert from "../components/GenerateAlert";
 
 const FamilyDashboard = () => {
@@ -50,17 +51,16 @@ const FamilyDashboard = () => {
 
   {/* Bottom section: Past Trends, Tokens, Hospital, Proof of Assistance */}
   <div className="flex flex-wrap gap-10 px-7">
-    {/* <div className="w-[18%]">
+    <div className="w-[18%]">
       <PastHealthTrends />
-    </div> */}
+    </div>
     {/* <div className="w-[18%]">
       <TokenEarned />
     </div> */}
-    {/* <div className="w-[24%]">
-      Replace this div content with actual Health Centre
-      <div className="bg-white h-full rounded-xl shadow"><HealthCentre/></div>
-    </div> */}
-  
+    <div className="w-[24%]">
+
+  <NotificationCard/>
+    </div>
   </div>
 </div>
 

@@ -10,6 +10,7 @@ import PastHealthTrends from "../components/PastHealthTrends";
 import TokenEarned from "../components/TokenEarned";
 import HealthCentre from "../components/HealthCentre";
 import ProofOfAssistance from "../components/ProofOfAssistance";
+import NotificationCard from "../components/NotificationCard";
 // import GenerateAlert from "../components/GenerateAlert";
 
 const FamilyDashboard = () => {
@@ -33,20 +34,20 @@ const FamilyDashboard = () => {
 
   {/* Vitals: Body Temp, Oxygen, Heart Rate, Live Location */}
   <div className="flex flex-wrap gap-10 px-7">
-    <div className="w-[24%]">
+    <div className="w-[22%]">
       <BodyTemperature />
     </div>
-    <div className="w-[24%]">
+    <div className="w-[22%]">
       <OxygenLevel />
     </div>
-    <div className="w-[24%]">
+    <div className="w-[22%]">
       <HeartRate />
     </div>
     {/* <div className="flex-1 min-w-[30%]">
     <ProofOfAssistance/>
     </div> */}
-      <div className="w-[18%]">
-      <TokenEarned />
+      <div className="w-[24%]">
+      <NotificationCard />
     </div>
   </div>
 

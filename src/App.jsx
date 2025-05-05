@@ -6,22 +6,6 @@ import FamilyDashboard from "./pages/FamilyDashboard";
 import ProviderDashboard from "./pages/ProviderDashboard";
 import NeighborDashboard from "./pages/NeighborDashboard";
 
-// Protected route component
-const ProtectedRoute = ({ element, allowedUserType }) => {
-  const userType = localStorage.getItem("userType");
-  
-  // Check if user is logged in and has the correct user type
-  if (!userType) {
-    return <Navigate to="/" replace />;
-  }
-  
-  // If allowedUserType is specified, check if user has permission
-  if (allowedUserType && userType !== allowedUserType) {
-    return <Navigate to="/" replace />;
-  }
-  
-  return element;
-};
 
 function App() {
   return (
@@ -34,15 +18,15 @@ function App() {
         {/* Protected Dashboard Routes */}
         <Route 
           path="/family" 
-          element={<ProtectedRoute element={<FamilyDashboard />} allowedUserType="family" />} 
+          element={<FamilyDashboard />} 
         />
         <Route 
           path="/healthcare" 
-          element={<ProtectedRoute element={<ProviderDashboard />} allowedUserType="provider" />} 
+          element={<ProviderDashboard />} 
         />
         <Route 
           path="/neighbor" 
-          element={<ProtectedRoute element={<NeighborDashboard />} allowedUserType="neighbor" />} 
+          element={<NeighborDashboard />} 
         />
         
         {/* Fallback route for undefined paths */}

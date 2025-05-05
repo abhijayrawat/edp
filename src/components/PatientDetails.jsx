@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const PatientDetails = () => {
   const [showForm, setShowForm] = useState(false);
+  const [isAlerted, setIsAlerted] = useState(false);
   const [patient, setPatient] = useState({
     id: "220239493",
     age: "68",
@@ -24,10 +25,35 @@ const PatientDetails = () => {
     setShowForm(false);
   };
 
+  // Listen for alert from localStorage
+  // useEffect(() => {
+  //   const handleStorageChange = (e) => {
+  //     if (e.key === "incomingAlert" && window.location.pathname === "/healthcare") {
+  //       try {
+  //         const alertData = JSON.parse(e.newValue);
+  //         if (alertData?.message) {
+  //           setIsAlerted(true);
+  //           // Optional: Auto-clear alert after few seconds
+  //           setTimeout(() => setIsAlerted(false), 5000);
+  //         }
+  //       } catch (error) {
+  //         console.error("Error parsing alert:", error);
+  //       }
+  //     }
+  //   };
+
+  //   window.addEventListener("storage", handleStorageChange);
+  //   return () => window.removeEventListener("storage", handleStorageChange);
+  // }, []);
+
   return (
     <>
       {/* Main Patient Card */}
-      <div className="relative p-4 rounded-xl text-white bg-[#a8cf45] overflow-hidden hover:scale-105 hover:shadow-xl transition-transform transition-shadow duration-200 cursor-pointer">
+      <div
+        className={`relative p-4 rounded-xl text-white overflow-hidden transition-all duration-300 ease-in-out hover:scale-100 hover:shadow-xl cursor-pointer ${
+          isAlerted ? "bg-red-500" : "bg-[#a8cf45]"
+        }`}
+      >
         <div className="mb-2 font-semibold text-black">ID-{patient.id}</div>
 
         <div className="grid grid-cols-2 gap-x-8 gap-y-1 text-black">
@@ -68,7 +94,7 @@ const PatientDetails = () => {
         {/* Update Button */}
         <button
           onClick={() => setShowForm(true)}
-          className="mt-4 bg-[#283618] hover:bg-[#3a4f2d] hover:scale-105 hover:shadow-md transition-all duration-200 text-white rounded-md px-4 py-1.5 flex items-center gap-1.5 relative z-20"
+          className="mt-4 bg-[#283618] hover:bg-[#3a4f2d] hover:scale-100 hover:shadow-md transition-all duration-200 text-white rounded-md px-4 py-1.5 flex items-center gap-1.5 relative z-20"
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
             <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
@@ -76,7 +102,6 @@ const PatientDetails = () => {
           Update
         </button>
 
-        {/* Decorative image */}
         <img
           src="/Patient.svg"
           alt=""

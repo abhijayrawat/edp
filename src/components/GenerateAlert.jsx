@@ -1,8 +1,17 @@
 import React from 'react';
 
 const GenerateAlert = () => {
+  const sendAlert = () => {
+    const alertPayload = {
+      message: '⚠️ High Alert Triggered!',
+      timestamp: Date.now(),
+    };
+    // Store the alert in localStorage
+    localStorage.setItem('incomingAlert', JSON.stringify(alertPayload));
+  };
+
   return (
-    <div className="bg-[#F7FFD9] rounded-2xl p-6 shadow-lg flex flex-col justify-between h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
+    <div className="bg-[#F7FFD9] rounded-2xl p-6 shadow-lg flex flex-col justify-between h-full transition-transform duration-300 ease-in-out hover:scale-100 hover:shadow-xl">
       <div className="flex justify-between items-start">
         <div className="max-w-[60%]">
           <h3 className="text-[#000000] font-bold text-xl mb-4">Generate High Alert</h3>
@@ -12,7 +21,7 @@ const GenerateAlert = () => {
         </div>
         <div className="w-32 h-32">
           <img
-            src="Assistance.svg" // Replace with your radar image
+            src="Assistance.svg" // Replace with your desired image
             alt="Radar Chart"
             className="w-full h-full object-contain"
           />
@@ -20,12 +29,12 @@ const GenerateAlert = () => {
       </div>
 
       {/* Smooth Slide Button */}
-      <div className="mt-8 w-full">
-        <div className="group bg-gradient-to-r from-[#B6E401] to-[#4D6100] rounded-full p-1 flex items-center justify-between cursor-pointer transition-all duration-500 ease-in-out hover:from-[#A4D000] hover:to-[#3C5000] hover:shadow-lg hover:scale-[1.02]">
-          <span className="text-white font-semibold px-6 py-3 transition-all duration-500 ease-in-out">
+      <div className="mt-8 w-full" onClick={sendAlert}>
+        <div className="group bg-gradient-to-r from-[#B6E401] to-[#4D6100] rounded-full p-1 flex items-center justify-between cursor-pointer  hover:to-[#3C5000] hover:shadow-lg hover:scale-[1.02]">
+          <span className="text-white font-semibold px-6 py-3 transition-all ">
             Slide to Generate Alert Ping
           </span>
-          <div className="bg-white rounded-full p-2 mr-2 transition-all duration-500 ease-in-out group-hover:translate-x-1 group-hover:shadow-md">
+          <div className="bg-white rounded-full p-2 mr-2 transition-all duration-500 ease-in-out ">
             <svg
               className="w-4 h-4 text-[#4D6100] transition-all duration-500 ease-in-out"
               fill="none"
